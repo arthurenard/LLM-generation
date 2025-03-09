@@ -1,0 +1,24 @@
+name: mistral-7b
+pretrained_model_name_or_path: mistralai/Mistral-7B-v0.1
+model_type: causal_lm
+revision: main
+
+# Quantization settings
+quantization:
+  enabled: true
+  bits: 4  # 8, 4
+  group_size: 128  # For GPTQ quantization
+
+# Model loading settings
+model_loading:
+  use_cache: true
+  torch_dtype: bfloat16  # auto, float16, bfloat16, float32
+  device_map: auto  # auto, balanced, sequential, or specific mapping
+  trust_remote_code: false
+  
+# Tokenizer settings
+tokenizer:
+  padding_side: right
+  truncation_side: right
+  use_fast: true
+  add_bos_token: true  # Whether to add BOS token automatically 

@@ -1,0 +1,13 @@
+torch
+pytorch-lightning
+transformers
+vllm
+wandb
+pydantic
+tqdm
+pyarrow
+pandas
+hydra-core
+omegaconf
+accelerate
+bitsandbytes 

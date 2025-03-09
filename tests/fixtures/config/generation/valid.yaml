@@ -1,0 +1,29 @@
+# Generation parameters
+temperature: 0.8
+top_p: 0.92
+top_k: 50
+repetition_penalty: 1.0
+max_length: 128
+min_length: 10
+num_return_sequences: 1
+do_sample: true
+early_stopping: false
+
+# Batch processing
+batch_size: 2
+max_batch_size: 4
+chunk_size: 128
+
+# Prompt settings
+prompt_template: "{prompt}"
+prompt_file: null
+num_prompts: 3
+
+# vLLM specific settings
+vllm:
+  enabled: false
+  tensor_parallel_size: 1
+  max_model_len: 2048
+  gpu_memory_utilization: 0.7
+  swap_space: 1
+  enforce_eager: true 

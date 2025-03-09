@@ -1,0 +1,29 @@
+# Generation parameters
+temperature: 0.8
+top_p: 0.92
+top_k: 50
+repetition_penalty: 1.0
+max_length: 1024
+min_length: 10
+num_return_sequences: 1
+do_sample: true
+early_stopping: false
+
+# Batch processing
+batch_size: 16
+max_batch_size: 64  # Maximum batch size for vLLM
+chunk_size: 512  # Chunk size for processing large datasets
+
+# Prompt settings
+prompt_template: "{prompt}"  # Template for formatting prompts
+prompt_file: null  # Path to file containing prompts (one per line)
+num_prompts: 1000  # Number of prompts to generate if no prompt file
+
+# vLLM specific settings
+vllm:
+  enabled: true
+  tensor_parallel_size: 1  # Number of GPUs for tensor parallelism
+  max_model_len: 8192  # Maximum model sequence length
+  gpu_memory_utilization: 0.9  # Target GPU memory utilization
+  swap_space: 4  # Swap space in GiB
+  enforce_eager: false  # Enforce eager execution (for debugging) 

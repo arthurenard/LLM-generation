@@ -1,0 +1,6 @@
+# Post-processing settings with invalid values
+enabled: "not_a_boolean"  # Should be a boolean
+max_length: "not_an_integer"  # Should be an integer
+complete_sentences: "not_a_boolean"  # Should be a boolean
+deduplicate: "not_a_boolean"  # Should be a boolean
+min_length: "not_an_integer"  # Should be an integer 

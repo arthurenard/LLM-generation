@@ -1,0 +1,6 @@
+# Post-processing settings
+enabled: true
+max_length: 2048  # Maximum length in characters
+complete_sentences: true  # Remove incomplete sentences
+deduplicate: true  # Remove duplicate consecutive sentences
+min_length: 10  # Minimum length in characters to keep 

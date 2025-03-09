@@ -1,0 +1,20 @@
+enabled: true
+project: text-generation-pipeline
+entity: null  # Your wandb username or team name
+name: ${model.name}_${now:%Y-%m-%d_%H-%M-%S}
+tags: ["${model.name}"]
+notes: "Text generation with ${model.name}"
+
+# Logging settings
+log_model: false
+log_level: info
+log_interval: 100  # Log metrics every N samples
+log_samples: 10  # Number of generated samples to log
+log_gradients: false
+
+# Metrics to track
+metrics:
+  throughput: true  # Tokens per second
+  latency: true  # Generation latency
+  token_diversity: true  # Measure diversity of generated tokens
+  memory_usage: true  # Track GPU memory usage 

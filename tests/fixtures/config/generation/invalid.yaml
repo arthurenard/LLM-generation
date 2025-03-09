@@ -1,0 +1,29 @@
+# Generation parameters with invalid values
+temperature: "not_a_float"  # Should be a float
+top_p: 2.0  # Should be between 0 and 1
+top_k: -10  # Should be positive
+repetition_penalty: 0.0  # Should be positive
+max_length: "invalid"  # Should be an integer
+min_length: 100  # Should be less than max_length
+num_return_sequences: 0  # Should be positive
+do_sample: "not_a_boolean"  # Should be a boolean
+early_stopping: "not_a_boolean"  # Should be a boolean
+
+# Batch processing with invalid values
+batch_size: -1  # Should be positive
+max_batch_size: "not_an_integer"  # Should be an integer
+chunk_size: 0  # Should be positive
+
+# Prompt settings with invalid values
+prompt_template: 123  # Should be a string
+prompt_file: 456  # Should be a string or null
+num_prompts: "not_an_integer"  # Should be an integer
+
+# vLLM specific settings with invalid values
+vllm:
+  enabled: "not_a_boolean"  # Should be a boolean
+  tensor_parallel_size: -1  # Should be positive
+  max_model_len: "not_an_integer"  # Should be an integer
+  gpu_memory_utilization: 2.0  # Should be between 0 and 1
+  swap_space: -1  # Should be non-negative
+  enforce_eager: "not_a_boolean"  # Should be a boolean 

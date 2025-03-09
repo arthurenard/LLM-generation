@@ -1,0 +1,75 @@
+model:
+  name: gpt2
+  pretrained_model_name_or_path: gpt2
+  model_type: causal_lm
+  revision: main
+  quantization:
+    enabled: false
+    bits: 8
+    group_size: 128
+  model_loading:
+    use_cache: true
+    torch_dtype: auto
+    device_map: auto
+    trust_remote_code: false
+  tokenizer:
+    padding_side: right
+    truncation_side: right
+    use_fast: true
+    add_bos_token: false
+generation:
+  temperature: 0.8
+  top_p: 0.92
+  top_k: 50
+  repetition_penalty: 1.0
+  max_length: 128
+  min_length: 10
+  num_return_sequences: 1
+  do_sample: true
+  early_stopping: false
+  batch_size: 2
+  max_batch_size: 4
+  chunk_size: 128
+  prompt_template: '{prompt}'
+  prompt_file: null
+  num_prompts: 3
+  vllm:
+    enabled: false
+    tensor_parallel_size: 1
+    max_model_len: 2048
+    gpu_memory_utilization: 0.7
+    swap_space: 1
+    enforce_eager: true
+logging:
+  enabled: false
+  project: test-project
+  entity: null
+  name: test-run
+  tags:
+  - test
+  notes: Test run
+  log_model: false
+  log_level: info
+  log_interval: 1
+  log_samples: 1
+  log_gradients: false
+  metrics:
+    throughput: true
+    latency: true
+    token_diversity: true
+    memory_usage: true
+post_processing:
+  enabled: true
+  max_length: 200
+  complete_sentences: true
+  deduplicate: true
+  min_length: 5
+output:
+  dir: ./test_outputs
+  format: jsonl
+  save_interval: 1
+runtime:
+  seed: 42
+  device: cpu
+  num_workers: 1
+  distributed: false

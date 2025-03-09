@@ -1,0 +1,21 @@
+enabled: false
+project: test-project
+entity: null
+name: test-run
+tags:
+  - test
+notes: "Test run"
+
+# Logging settings
+log_model: false
+log_level: info
+log_interval: 1
+log_samples: 1
+log_gradients: false
+
+# Metrics to track
+metrics:
+  throughput: true
+  latency: true
+  token_diversity: true
+  memory_usage: true 

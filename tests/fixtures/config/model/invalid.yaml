@@ -1,0 +1,23 @@
+name: test-model
+# Missing required field: pretrained_model_name_or_path
+model_type: causal_lm
+revision: main
+
+# Invalid quantization settings (missing required fields)
+quantization:
+  enabled: true
+  # Missing bits field
+
+# Invalid model loading settings (invalid value type)
+model_loading:
+  use_cache: "not_a_boolean"  # Should be a boolean
+  torch_dtype: auto
+  device_map: auto
+  trust_remote_code: false
+  
+# Tokenizer settings
+tokenizer:
+  padding_side: right
+  truncation_side: right
+  use_fast: true
+  add_bos_token: false 

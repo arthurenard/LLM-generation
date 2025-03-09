@@ -1,0 +1,20 @@
+enabled: "not_a_boolean"  # Should be a boolean
+project: 123  # Should be a string
+entity: 456  # Should be a string or null
+name: 789  # Should be a string
+tags: [123, 456]  # Should be strings
+notes: 123  # Should be a string
+
+# Logging settings with invalid values
+log_model: "not_a_boolean"  # Should be a boolean
+log_level: 123  # Should be a string
+log_interval: "not_an_integer"  # Should be an integer
+log_samples: -1  # Should be non-negative
+log_gradients: "not_a_boolean"  # Should be a boolean
+
+# Metrics to track with invalid values
+metrics:
+  throughput: "not_a_boolean"  # Should be a boolean
+  latency: "not_a_boolean"  # Should be a boolean
+  token_diversity: "not_a_boolean"  # Should be a boolean
+  memory_usage: "not_a_boolean"  # Should be a boolean 
