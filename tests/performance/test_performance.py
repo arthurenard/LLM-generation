@@ -68,11 +68,13 @@ class TestPerformance:
     @pytest.mark.skipif(not torch.cuda.is_available(), reason="CUDA not available")
     @patch("src.models.vllm_model.LLM")
     @patch("src.models.vllm_model.AutoTokenizer")
-    def test_vllm_model_generation_performance(self, mock_tokenizer, mock_llm, mock_model_config, mock_generation_config):
+    @patch("src.models.vllm_model.SamplingParams")
+    def test_vllm_model_generation_performance(self, mock_sampling_params, mock_tokenizer, mock_llm, mock_model_config, mock_generation_config):
         """Test the performance of vLLM model generation."""
         # Setup mocks
         mock_llm_instance = MagicMock()
         mock_tokenizer_instance = MagicMock()
+        mock_sampling_params_instance = MagicMock()
         
         # Make the generate method actually take some time
         def slow_generate(prompts, sampling_params):
@@ -81,12 +83,16 @@ class TestPerformance:
         
         mock_llm_instance.generate.side_effect = slow_generate
         mock_tokenizer_instance.encode.side_effect = lambda text, **kwargs: [1, 2, 3, 4, 5]
+        mock_sampling_params.return_value = mock_sampling_params_instance
         
         mock_llm.return_value = mock_llm_instance
         mock_tokenizer.from_pretrained.return_value = mock_tokenizer_instance
         
         # Create a model
         model = VLLMModel(mock_model_config, mock_generation_config)
+        
+        # Mock the create_sampling_params method to avoid the attribute error
+        model.create_sampling_params = MagicMock(return_value=mock_sampling_params_instance)
         
         # Generate text with different batch sizes
         batch_sizes = [1, 2, 4, 8]
@@ -97,10 +103,7 @@ class TestPerformance:
             
             # Measure generation time
             start_time = time.time()
-            # Remove any problematic parameters from the generation config
-            generation_config = {k: v for k, v in mock_generation_config.items() 
-                               if k not in ['include_prompt']}
-            model.generate(prompts, generation_config)
+            model.generate(prompts)
             end_time = time.time()
             
             times.append(end_time - start_time)

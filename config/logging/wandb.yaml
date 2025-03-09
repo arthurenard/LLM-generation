@@ -2,7 +2,8 @@ enabled: true
 project: text-generation-pipeline
 entity: null  # Your wandb username or team name
 name: ${model.name}_${now:%Y-%m-%d_%H-%M-%S}
-tags: ["${model.name}"]
+tags:
+  - ${model.name}
 notes: "Text generation with ${model.name}"
 
 # Logging settings
